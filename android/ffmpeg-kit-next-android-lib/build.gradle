@@ -1,21 +1,26 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'org.jetbrains.dokka'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'com.vanniktech.maven.publish' version '0.37.0'
+}
 
 base {
     archivesName = "ffmpeg-kit-next"
 }
 
+def name = "ffmpeg-kit-next"
+def version = "1.0.0"
+
 android {
     if (project.android.hasProperty("namespace")) {
         namespace = 'com.arthenica.ffmpegkit'
     }
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         minSdk 24
         versionCode 240902
-        versionName "9.0.2"
+        versionName version
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -48,18 +53,40 @@ android {
             systemProperty 'enable.ffmpegkit.test.mode', 'true'
         }
     }
-
-    publishing {
-        singleVariant('release') {
-            withSourcesJar()
-        }
-    }
 }
 
-tasks.register('dokkaJavadocJar', Jar) {
-    dependsOn dokkaJavadoc
-    archiveClassifier.set('javadoc')
-    from dokkaJavadoc.outputDirectory
+mavenPublishing {
+    publishToMavenCentral()
+
+    signAllPublications()
+
+    coordinates("io.github.animiruorg", name, version)
+
+    pom {
+        name = "ffmpeg-kit-next"
+        description = "Fork of https://github.com/arthenica/ffmpeg-kit-next for Animiru"
+        inceptionYear = "2026"
+        url = "https://github.com/animiruorg/ffmpeg-kit-next/"
+        licenses {
+            license {
+                name = "GNU Lesser General Public License version 3"
+                url = "https://opensource.org/license/lgpl-3-0"
+                distribution = "https://www.gnu.org/licenses/lgpl-3.0.txt"
+            }
+        }
+        developers {
+            developer {
+                id = "animiruorg"
+                name = "Animiru Org"
+                url = "https://github.com/animiruorg/"
+            }
+        }
+        scm {
+            url = "https://github.com/animiruorg/ffmpeg-kit-next/"
+            connection = "scm:git:git://github.com/animiruorg/ffmpeg-kit-next.git"
+            developerConnection = "scm:git:ssh://git@github.com/animiruorg/ffmpeg-kit-next.git"
+        }
+    }
 }
 
 dependencies {
