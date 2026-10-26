@@ -10,7 +10,7 @@ android {
     if (project.android.hasProperty("namespace")) {
         namespace = 'com.arthenica.ffmpegkit'
     }
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         minSdk 24

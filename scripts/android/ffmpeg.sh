@@ -436,8 +436,8 @@ fi
 
 # 3. Patch source
 echo -e "\nINFO: Patching ffmpeg source\n" 1>>"${BASEDIR}"/build.log 2>&1
-git apply "${BASEDIR}"/patches/0000_ffmpeg_force_mpegts.patch 1>>"${BASEDIR}"/build.log 2>&1 || return 1
-git apply "${BASEDIR}"/patches/0001_mpegts_png_prefix_unaligned.patch 1>>"${BASEDIR}"/build.log 2>&1 || return 1
+git apply "${BASEDIR}"/patches/0000_ffmpeg_force_mpegts.patch 1>>"${BASEDIR}"/build.log 2>&1
+git apply "${BASEDIR}"/patches/0001_mpegts_png_prefix_unaligned.patch 1>>"${BASEDIR}"/build.log 2>&1
 
 ###################################################################
 
