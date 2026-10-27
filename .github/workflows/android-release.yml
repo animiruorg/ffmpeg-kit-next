@@ -1,4 +1,8 @@
 name: Release
+
+permissions:
+  contents: write
+
 on:
   push:
     tags:
@@ -80,7 +84,7 @@ jobs:
           draft: false
           prerelease: false
         env:
-          GITHUB_TOKEN: ${{ secrets.ORG_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish release
         env:
