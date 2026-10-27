@@ -8,8 +8,8 @@ base {
     archivesName = "ffmpeg-kit-next"
 }
 
-def name = "ffmpeg-kit-next"
-def version = "1.0.0"
+def libName = "ffmpeg-kit-next"
+def libVersion = "1.0.0"
 
 android {
     if (project.android.hasProperty("namespace")) {
@@ -20,7 +20,7 @@ android {
     defaultConfig {
         minSdk 24
         versionCode 240902
-        versionName version
+        versionName libVersion
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -60,7 +60,7 @@ mavenPublishing {
 
     signAllPublications()
 
-    coordinates("io.github.animiruorg", name, version)
+    coordinates("io.github.animiruorg", libName, libVersion)
 
     pom {
         name = "ffmpeg-kit-next"
